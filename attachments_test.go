@@ -21,7 +21,7 @@ func TestPostAttachments(t *testing.T) {
 
 	attachmentsData, response, err := gitClient.Attachments.PostAttachments("LICENSE")
 	if err != nil {
-		t.Fatalf("列出授权用户的所有仓库 异常：%s", err)
+		t.Fatalf("上传文件 异常：%s", err)
 	}
 
 	t.Log(response.Status)
