@@ -30,6 +30,8 @@ func TestGetProjects(t *testing.T) {
 
 	t.Log(response.Status)
 	t.Log(len(projectsData.Projects))
+	t.Log(projectsData.Status)
+	t.Log(projectsData.Message)
 	t.Log(projectsData.TotalCount)
 	t.Log(projectsData.Projects[0].Name)
 

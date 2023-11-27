@@ -79,6 +79,8 @@ type Project struct {
 }
 
 type ProjectsData struct {
+	Status     int       `json:"status,omitempty"`
+	Message    string    `json:"message,omitempty"`
 	TotalCount int       `json:"total_count"`
 	Projects   []Project `json:"projects"`
 }
