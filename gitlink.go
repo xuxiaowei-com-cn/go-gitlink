@@ -30,6 +30,8 @@ type Client struct {
 
 	token string
 
+	cookie string
+
 	UserAgent string
 
 	Projects    *ProjectsService
@@ -132,7 +134,13 @@ func (c *Client) NewRequest(method, path string, request interface{}) (*retryabl
 		return nil, err
 	}
 
-	q.Set("Authorization", c.token)
+	if c.token != "" {
+		reqHeaders.Set("Authorization", fmt.Sprintf("Bearer %s", c.token))
+	}
+
+	if c.cookie != "" {
+		reqHeaders.Set("Cookie", c.cookie)
+	}
 
 	u.RawQuery = q.Encode()
 
@@ -182,6 +190,14 @@ func (c *Client) UploadRequest(method, path string, content io.Reader, filename 
 	}
 
 	reqHeaders.Set("Content-Type", w.FormDataContentType())
+
+	if c.token != "" {
+		reqHeaders.Set("Authorization", fmt.Sprintf("Bearer %s", c.token))
+	}
+
+	if c.cookie != "" {
+		reqHeaders.Set("Cookie", c.cookie)
+	}
 
 	req, err := retryablehttp.NewRequest(method, u.String(), b)
 	if err != nil {

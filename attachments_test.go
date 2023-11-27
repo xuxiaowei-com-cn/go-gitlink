@@ -10,11 +10,14 @@ import (
 func TestPostAttachments(t *testing.T) {
 
 	var token = os.Getenv("GO_GITLINK_TOKEN")
+	var cookie = os.Getenv("GO_GITLINK_COOKIE")
 
 	gitClient, err := NewClient(token)
 	if err != nil {
 		t.Fatalf("创建客户端异常：%s", err)
 	}
+
+	gitClient.cookie = cookie
 
 	attachmentsData, response, err := gitClient.Attachments.PostAttachments("LICENSE")
 	if err != nil {
