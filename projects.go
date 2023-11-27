@@ -38,13 +38,6 @@ type GetProjectsRequest struct {
 	ListOptions
 }
 
-type Author struct {
-	Type     string `json:"type"`
-	Name     string `json:"name"`
-	Login    string `json:"login"`
-	ImageUrl string `json:"image_url"`
-}
-
 type Language struct {
 	Id   int    `json:"id"`
 	Name string `json:"name"`
