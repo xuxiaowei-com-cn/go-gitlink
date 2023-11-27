@@ -22,6 +22,12 @@
     - ❤ Contributors | 贡献者
     - ⚠️ Noteworthy Changes | 值得注意的变化
 
+## v0.1.0
+
+- ⭐ New Features | 新功能
+    - 新增 `TestDeleteTag`
+      [删除一个标签](https://apifox.com/apidoc/shared-da30afb0-9d2e-429b-a4bc-a83209e06021/api-118749620)
+
 ## v0.0.3
 
 - 🐞 Bug Fixes | 漏洞修补
