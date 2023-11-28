@@ -111,7 +111,7 @@ func (c *Client) setBaseURL(urlStr string) error {
 	return nil
 }
 
-func (c *Client) NewRequest(method, path string, request interface{}) (*retryablehttp.Request, error) {
+func (c *Client) NewRequest(method, path string, requestQuery interface{}, requestBody interface{}) (*retryablehttp.Request, error) {
 	u := *c.baseURL
 	unescaped, err := url.PathUnescape(path)
 	if err != nil {
@@ -123,15 +123,25 @@ func (c *Client) NewRequest(method, path string, request interface{}) (*retryabl
 
 	reqHeaders := make(http.Header)
 	reqHeaders.Set("Accept", "application/json")
-	reqHeaders.Set("Content-Type", "application/json")
 
 	if c.UserAgent != "" {
 		reqHeaders.Set("User-Agent", c.UserAgent)
 	}
 
 	var body interface{}
+	switch {
+	case method == http.MethodPatch || method == http.MethodPost || method == http.MethodPut:
+		reqHeaders.Set("Content-Type", "application/json")
 
-	q, err := query.Values(request)
+		if requestBody != nil {
+			body, err = json.Marshal(requestBody)
+			if err != nil {
+				return nil, err
+			}
+		}
+	}
+
+	q, err := query.Values(requestQuery)
 	if err != nil {
 		return nil, err
 	}

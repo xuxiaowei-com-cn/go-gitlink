@@ -30,16 +30,16 @@ func TestDeleteTag(t *testing.T) {
 		t.Fatalf("删除一个标签 异常：%s", err)
 	}
 
-	t.Log(response.Status)
-	t.Log(deleteTag.Status)
-	t.Log(deleteTag.Message)
+	t.Log("response.Status：", response.Status)
+	t.Log("Status：", deleteTag.Status)
+	t.Log("Message：", deleteTag.Message)
 
 	jsonData, err := json.Marshal(deleteTag)
 	if err != nil {
 		t.Log("转换失败：", err)
 		return
 	}
-	t.Log(string(jsonData))
+	t.Log("JSON：", string(jsonData))
 }
 
 // 获取仓库标签列表
@@ -54,25 +54,34 @@ func TestGetTags(t *testing.T) {
 
 	gitClient.cookie = cookie
 
-	var getTagsRequest = &GetTagsRequest{
+	var getTagsRequest = &GetTagsRequestPath{
 		Owner: "xuxiaowei-com-cn",
 		Repo:  "go-gitlink",
 	}
 
-	getTagsData, response, err := gitClient.Tag.GetTags(getTagsRequest)
+	var getTagsRequestQuery = &GetTagsRequestQuery{
+		Name: "2",
+		ListOptions: ListOptions{
+			Page:  1,
+			Limit: 4,
+		},
+	}
+
+	getTagsData, response, err := gitClient.Tag.GetTags(getTagsRequest, getTagsRequestQuery)
 	if err != nil {
 		t.Fatalf("获取仓库标签列表 异常：%s", err)
 	}
 
-	t.Log(response.Status)
-	t.Log(getTagsData.Status)
-	t.Log(getTagsData.Message)
-	t.Log(getTagsData.TotalCount)
+	t.Log("response.Status：", response.Status)
+	t.Log("Status：", getTagsData.Status)
+	t.Log("Message：", getTagsData.Message)
+	t.Log("len：", len(getTagsData.Tags))
+	t.Log("TotalCount：", getTagsData.TotalCount)
 
 	jsonData, err := json.Marshal(getTagsData)
 	if err != nil {
 		t.Log("转换失败：", err)
 		return
 	}
-	t.Log(string(jsonData))
+	t.Log("JSON：", string(jsonData))
 }

@@ -3,8 +3,6 @@ package gitlink
 import (
 	"fmt"
 	"net/http"
-	"net/url"
-	"strconv"
 )
 
 type DeleteTagRequest struct {
@@ -27,7 +25,7 @@ func (s *TagService) DeleteTag(request *DeleteTagRequest) (*DeleteTag, *Response
 
 	u := fmt.Sprintf("/v1/%s/%s/tags/%s.json", request.Owner, request.Repo, request.Tag)
 
-	req, err := s.client.NewRequest(http.MethodDelete, u, request)
+	req, err := s.client.NewRequest(http.MethodDelete, u, nil, nil)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -41,10 +39,13 @@ func (s *TagService) DeleteTag(request *DeleteTagRequest) (*DeleteTag, *Response
 	return deleteTag, resp, nil
 }
 
-type GetTagsRequest struct {
+type GetTagsRequestPath struct {
 	Owner string // 必需
 	Repo  string // 必需
-	Name  string // 搜索关键词，可选
+}
+
+type GetTagsRequestQuery struct {
+	Name string // 搜索关键词，可选
 	ListOptions
 }
 
@@ -93,31 +94,11 @@ type GetTagsData struct {
 }
 
 // GetTags 获取仓库标签列表 https://apifox.com/apidoc/shared-da30afb0-9d2e-429b-a4bc-a83209e06021/api-118749619
-func (s *TagService) GetTags(request *GetTagsRequest) (*GetTagsData, *Response, error) {
+func (s *TagService) GetTags(request *GetTagsRequestPath, requestQuery *GetTagsRequestQuery) (*GetTagsData, *Response, error) {
 
 	u := fmt.Sprintf("/v1/%s/%s/tags.json", request.Owner, request.Repo)
 
-	parsedUrl, err := url.Parse(u)
-	if err != nil {
-		fmt.Println("Error parsing URL:", err)
-		return nil, nil, err
-	}
-
-	queryParams := parsedUrl.Query()
-
-	if request.Page != 0 {
-		queryParams.Set("page", strconv.Itoa(request.Page))
-	}
-	if request.Limit != 0 {
-		queryParams.Set("limit", strconv.Itoa(request.Limit))
-	}
-	if request.Name != "" {
-		queryParams.Set("name", request.Name)
-	}
-
-	parsedUrl.RawQuery = queryParams.Encode()
-
-	req, err := s.client.NewRequest(http.MethodGet, parsedUrl.String(), request)
+	req, err := s.client.NewRequest(http.MethodGet, u, requestQuery, nil)
 	if err != nil {
 		return nil, nil, err
 	}

@@ -24,16 +24,16 @@ func TestPostAttachments(t *testing.T) {
 		t.Fatalf("上传文件 异常：%s", err)
 	}
 
-	t.Log(response.Status)
-	t.Log(attachmentsData.Filesize)
-	t.Log(attachmentsData.Id)
-	t.Log(attachmentsData.Status)
-	t.Log(attachmentsData.Message)
+	t.Log("response.Status：", response.Status)
+	t.Log("Status：", attachmentsData.Status)
+	t.Log("Message：", attachmentsData.Message)
+	t.Log("Id：", attachmentsData.Id)
+	t.Log("Filesize：", attachmentsData.Filesize)
 
 	jsonData, err := json.Marshal(attachmentsData)
 	if err != nil {
 		t.Log("转换失败：", err)
 		return
 	}
-	t.Log(string(jsonData))
+	t.Log("JSON：", string(jsonData))
 }

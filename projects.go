@@ -87,7 +87,7 @@ func (s *ProjectsService) GetProjects(request *GetProjectsRequest) (*ProjectsDat
 
 	u := "projects"
 
-	req, err := s.client.NewRequest(http.MethodGet, u, request)
+	req, err := s.client.NewRequest(http.MethodGet, u, request, nil)
 	if err != nil {
 		return nil, nil, err
 	}

@@ -28,17 +28,17 @@ func TestGetProjects(t *testing.T) {
 		t.Fatalf("列出授权用户的所有仓库 异常：%s", err)
 	}
 
-	t.Log(response.Status)
-	t.Log(len(projectsData.Projects))
-	t.Log(projectsData.Status)
-	t.Log(projectsData.Message)
-	t.Log(projectsData.TotalCount)
-	t.Log(projectsData.Projects[0].Name)
+	t.Log("response.Status：", response.Status)
+	t.Log("Status：", projectsData.Status)
+	t.Log("Message：", projectsData.Message)
+	t.Log("len：", len(projectsData.Projects))
+	t.Log("TotalCount：", projectsData.TotalCount)
+	t.Log("Projects[0].Name：", projectsData.Projects[0].Name)
 
 	jsonData, err := json.Marshal(projectsData)
 	if err != nil {
 		t.Log("转换失败：", err)
 		return
 	}
-	t.Log(string(jsonData))
+	t.Log("JSON：", string(jsonData))
 }

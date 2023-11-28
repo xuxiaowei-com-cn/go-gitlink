@@ -2,7 +2,7 @@
 
 ## [语义化版本](https://semver.org/lang/zh-CN/)
 
-- 版本格式：主版本号.次版本号.修订号，版本号递增规则如下：
+版本格式：主版本号.次版本号.修订号，版本号递增规则如下：
 
 1. 主版本号：当你做了不兼容的 API 修改，
 2. 次版本号：当你做了向下兼容的功能性新增，
@@ -21,6 +21,15 @@
     - 🔨 Dependency Upgrades | 依赖项升级
     - ❤ Contributors | 贡献者
     - ⚠️ Noteworthy Changes | 值得注意的变化
+
+## v1.0.0
+
+- ⭐ New Features | 新功能
+    - `NewRequest` 方法中新增 `body` 参数，实现 `query` 与 `body` 区分
+    - `NewRequest` 方法中默认请求不包含 `Content-Type`，只有在 `PATCH`、`POST`、`PUT` 方法时，才设置 `Content-Type`
+      为 `application/json`
+    - `GetTags` 获取仓库标签列表 将 `path`（必填）、`query`（选填） 分离，并简化代码
+    - 补充测试日志
 
 ## v0.2.0
 
