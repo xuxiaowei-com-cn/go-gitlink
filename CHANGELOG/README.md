@@ -22,10 +22,18 @@
     - ❤ Contributors | 贡献者
     - ⚠️ Noteworthy Changes | 值得注意的变化
 
+## v2.1.0
+
+- ⭐ New Features | 新功能
+    - 新增 `PostReleases`
+      [创建发行版](https://apifox.com/apidoc/shared-da30afb0-9d2e-429b-a4bc-a83209e06021/api-128319361)
+
 ## v2.0.0
 
 - ⭐ New Features | 新功能
-    - `PostAttachments` 上传文件 新增 上传到服务器上的文件名，如果为空，则截取文件路径中的文件名
+    - 新增 `PostAttachments`
+      [上传文件](https://apifox.com/apidoc/shared-da30afb0-9d2e-429b-a4bc-a83209e06021/api-128323479)
+      到服务器上的文件名，如果为空，则截取文件路径中的文件名
 
 ## v1.0.0
 
@@ -33,7 +41,9 @@
     - `NewRequest` 方法中新增 `body` 参数，实现 `query` 与 `body` 区分
     - `NewRequest` 方法中默认请求不包含 `Content-Type`，只有在 `PATCH`、`POST`、`PUT` 方法时，才设置 `Content-Type`
       为 `application/json`
-    - `GetTags` 获取仓库标签列表 将 `path`（必填）、`query`（选填） 分离，并简化代码
+    - `GetTags`
+      [获取仓库标签列表](https://apifox.com/apidoc/shared-da30afb0-9d2e-429b-a4bc-a83209e06021/api-118749619)
+      将 `path`（必填）、`query`（选填） 分离，并简化代码
     - 补充测试日志
 
 ## v0.2.0

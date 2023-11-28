@@ -37,6 +37,7 @@ type Client struct {
 	Projects    *ProjectsService
 	Attachments *AttachmentsService
 	Tag         *TagService
+	Releases    *ReleasesService
 }
 
 type ListOptions struct {
@@ -73,6 +74,7 @@ func newClient() (*Client, error) {
 	c.Projects = &ProjectsService{client: c}
 	c.Attachments = &AttachmentsService{client: c}
 	c.Tag = &TagService{client: c}
+	c.Releases = &ReleasesService{client: c}
 
 	return c, nil
 }
