@@ -19,7 +19,7 @@ func TestPostAttachments(t *testing.T) {
 
 	gitClient.cookie = cookie
 
-	attachmentsData, response, err := gitClient.Attachments.PostAttachments("LICENSE")
+	attachmentsData, response, err := gitClient.Attachments.PostAttachments("LICENSE", "")
 	if err != nil {
 		t.Fatalf("上传文件 异常：%s", err)
 	}

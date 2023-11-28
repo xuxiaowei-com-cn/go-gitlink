@@ -22,6 +22,11 @@
     - ❤ Contributors | 贡献者
     - ⚠️ Noteworthy Changes | 值得注意的变化
 
+## v2.0.0
+
+- ⭐ New Features | 新功能
+    - `PostAttachments` 上传文件 新增 上传到服务器上的文件名，如果为空，则截取文件路径中的文件名
+
 ## v1.0.0
 
 - ⭐ New Features | 新功能
