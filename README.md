@@ -109,7 +109,12 @@
 
 ## 使用方式
 
-1. 请查看对应测试类
+1. 获取依赖
+    ```shell
+    # 请使用 v2 版本的依赖
+    go get -u github.com/xuxiaowei-com-cn/go-gitlink/v2
+    ```
+2. 具体示例请查看对应的测试方法
 
 ## 开发命令
 
