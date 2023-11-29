@@ -1,4 +1,4 @@
-module github.com/xuxiaowei-com-cn/go-gitlink
+module github.com/xuxiaowei-com-cn/go-gitlink/v2
 
 go 1.21
 

@@ -22,6 +22,11 @@
     - ❤ Contributors | 贡献者
     - ⚠️ Noteworthy Changes | 值得注意的变化
 
+## v2.1.4
+
+- 🐞 Bug Fixes | 漏洞修补
+    - 修改 module 版本号
+
 ## v2.1.3
 
 - 🐞 Bug Fixes | 漏洞修补
