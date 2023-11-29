@@ -30,7 +30,7 @@ type Client struct {
 
 	token string
 
-	cookie string
+	Cookie string
 
 	UserAgent string
 
@@ -152,8 +152,8 @@ func (c *Client) NewRequest(method, path string, requestQuery interface{}, reque
 		reqHeaders.Set("Authorization", fmt.Sprintf("Bearer %s", c.token))
 	}
 
-	if c.cookie != "" {
-		reqHeaders.Set("Cookie", c.cookie)
+	if c.Cookie != "" {
+		reqHeaders.Set("Cookie", c.Cookie)
 	}
 
 	u.RawQuery = q.Encode()
@@ -209,8 +209,8 @@ func (c *Client) UploadRequest(method, path string, content io.Reader, filename 
 		reqHeaders.Set("Authorization", fmt.Sprintf("Bearer %s", c.token))
 	}
 
-	if c.cookie != "" {
-		reqHeaders.Set("Cookie", c.cookie)
+	if c.Cookie != "" {
+		reqHeaders.Set("Cookie", c.Cookie)
 	}
 
 	req, err := retryablehttp.NewRequest(method, u.String(), b)

@@ -22,6 +22,11 @@
     - ❤ Contributors | 贡献者
     - ⚠️ Noteworthy Changes | 值得注意的变化
 
+## v2.1.2
+
+- 🐞 Bug Fixes | 漏洞修补
+    - 修改配置 `Cookie` 范围
+
 ## v2.1.1
 
 - 📔 Documentation | 文档

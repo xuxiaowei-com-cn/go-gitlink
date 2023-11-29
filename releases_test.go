@@ -16,7 +16,7 @@ func TestPostReleases(t *testing.T) {
 		t.Fatalf("创建客户端异常：%s", err)
 	}
 
-	gitClient.cookie = cookie
+	gitClient.Cookie = cookie
 
 	requestPath := &PostReleasesRequestPath{
 		Owner: "xuxiaowei-com-cn",

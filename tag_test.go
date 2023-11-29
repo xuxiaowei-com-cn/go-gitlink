@@ -17,7 +17,7 @@ func TestDeleteTag(t *testing.T) {
 		t.Fatalf("创建客户端异常：%s", err)
 	}
 
-	gitClient.cookie = cookie
+	gitClient.Cookie = cookie
 
 	var deleteTagRequest = &DeleteTagRequest{
 		Owner: "xuxiaowei-com-cn",
