@@ -11,13 +11,13 @@ type PostReleasesRequestPath struct {
 }
 
 type PostReleasesRequestBody struct {
-	AttachmentIds   []int  `json:"attachment_ids"`   // 可选，附件ID数组
-	Body            string `json:"body"`             // 必需，发行版描述
-	Name            string `json:"name"`             // 必需，发行版标题
-	TagName         string `json:"tag_name"`         // 必需，标签
-	Draft           bool   `json:"draft"`            // 必需，是否为草稿
-	TargetCommitish string `json:"target_commitish"` // 可选，分支
-	Prerelease      bool   `json:"prerelease"`       // 可选，是否为预发行版本
+	AttachmentIds   []int64 `json:"attachment_ids"`   // 可选，附件ID数组
+	Body            string  `json:"body"`             // 必需，发行版描述
+	Name            string  `json:"name"`             // 必需，发行版标题
+	TagName         string  `json:"tag_name"`         // 必需，标签
+	Draft           bool    `json:"draft"`            // 必需，是否为草稿
+	TargetCommitish string  `json:"target_commitish"` // 可选，分支
+	Prerelease      bool    `json:"prerelease"`       // 可选，是否为预发行版本
 }
 
 type PostReleases struct {

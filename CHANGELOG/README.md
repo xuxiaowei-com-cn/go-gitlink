@@ -22,6 +22,11 @@
     - ❤ Contributors | 贡献者
     - ⚠️ Noteworthy Changes | 值得注意的变化
 
+## v2.1.3
+
+- 🐞 Bug Fixes | 漏洞修补
+    - 修改 [创建发行版](https://apifox.com/apidoc/shared-da30afb0-9d2e-429b-a4bc-a83209e06021/api-128319361) 接口参数类型
+
 ## v2.1.2
 
 - 🐞 Bug Fixes | 漏洞修补

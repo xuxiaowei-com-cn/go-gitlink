@@ -29,7 +29,7 @@ func TestPostReleases(t *testing.T) {
 		TagName: "v0.0.2-test",
 		//Prerelease: true,
 		Draft:         true,
-		AttachmentIds: []int{442010},
+		AttachmentIds: []int64{442010},
 	}
 
 	postReleases, response, err := gitClient.Releases.PostReleases(requestPath, requestBody)
