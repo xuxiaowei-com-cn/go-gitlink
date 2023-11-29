@@ -2,16 +2,13 @@ package gitlink
 
 import (
 	"encoding/json"
-	"os"
 	"testing"
 )
 
 // 项目列表
 func TestGetProjects(t *testing.T) {
 
-	var token = os.Getenv("GO_GITLINK_TOKEN")
-
-	gitClient, err := NewClient(token)
+	gitClient, err := NewClient("")
 	if err != nil {
 		t.Fatalf("创建客户端异常：%s", err)
 	}

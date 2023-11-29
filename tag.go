@@ -21,6 +21,8 @@ type TagService struct {
 }
 
 // DeleteTag 删除一个标签 https://apifox.com/apidoc/shared-da30afb0-9d2e-429b-a4bc-a83209e06021/api-118749620
+//
+// 接口需要凭证
 func (s *TagService) DeleteTag(request *DeleteTagRequest) (*DeleteTag, *Response, error) {
 
 	u := fmt.Sprintf("/v1/%s/%s/tags/%s.json", request.Owner, request.Repo, request.Tag)
@@ -94,6 +96,8 @@ type GetTagsData struct {
 }
 
 // GetTags 获取仓库标签列表 https://apifox.com/apidoc/shared-da30afb0-9d2e-429b-a4bc-a83209e06021/api-118749619
+//
+// 接口不需要凭证
 func (s *TagService) GetTags(request *GetTagsRequestPath, requestQuery *GetTagsRequestQuery) (*GetTagsData, *Response, error) {
 
 	u := fmt.Sprintf("/v1/%s/%s/tags.json", request.Owner, request.Repo)

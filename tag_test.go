@@ -44,15 +44,11 @@ func TestDeleteTag(t *testing.T) {
 
 // 获取仓库标签列表
 func TestGetTags(t *testing.T) {
-	var token = os.Getenv("GO_GITLINK_TOKEN")
-	var cookie = os.Getenv("GO_GITLINK_COOKIE")
 
-	gitClient, err := NewClient(token)
+	gitClient, err := NewClient("")
 	if err != nil {
 		t.Fatalf("创建客户端异常：%s", err)
 	}
-
-	gitClient.cookie = cookie
 
 	var getTagsRequest = &GetTagsRequestPath{
 		Owner: "xuxiaowei-com-cn",

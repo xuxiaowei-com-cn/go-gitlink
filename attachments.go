@@ -19,6 +19,8 @@ type AttachmentsData struct {
 
 // PostAttachments 上传文件 https://apifox.com/apidoc/shared-da30afb0-9d2e-429b-a4bc-a83209e06021/api-128323479
 //
+// 接口需要凭证
+//
 // filePath 文件路径，包含文件名
 //
 // fileName 上传到服务器上的文件名，如果为空，则截取 filePath 的文件名

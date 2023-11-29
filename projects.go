@@ -83,6 +83,8 @@ type ProjectsService struct {
 }
 
 // GetProjects 项目列表 https://apifox.com/apidoc/shared-da30afb0-9d2e-429b-a4bc-a83209e06021/api-102299292
+//
+// 接口不需要凭证
 func (s *ProjectsService) GetProjects(request *GetProjectsRequest) (*ProjectsData, *Response, error) {
 
 	u := "projects"
