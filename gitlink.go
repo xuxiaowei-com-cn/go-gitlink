@@ -2,16 +2,17 @@ package gitlink
 
 import (
 	"bytes"
-	"context"
 	"encoding/json"
 	"fmt"
 	"github.com/google/go-querystring/query"
 	"github.com/hashicorp/go-cleanhttp"
 	"github.com/hashicorp/go-retryablehttp"
 	"io"
+	"log"
 	"mime/multipart"
 	"net/http"
 	"net/url"
+	"os"
 	"sort"
 	"strings"
 	"time"
@@ -54,16 +55,18 @@ func NewClient(token string) (*Client, error) {
 	return client, nil
 }
 
+// retryablehttp.NewClient()
 func newClient() (*Client, error) {
 	c := &Client{UserAgent: userAgent}
 
 	c.client = &retryablehttp.Client{
-		CheckRetry:   c.retryHTTPCheck,
-		ErrorHandler: retryablehttp.PassthroughErrorHandler,
 		HTTPClient:   cleanhttp.DefaultPooledClient(),
-		RetryWaitMin: 100 * time.Millisecond,
-		RetryWaitMax: 400 * time.Millisecond,
-		RetryMax:     5,
+		Logger:       log.New(os.Stderr, "", log.LstdFlags),
+		RetryWaitMin: 1 * time.Second,
+		RetryWaitMax: 30 * time.Second,
+		RetryMax:     4,
+		CheckRetry:   retryablehttp.DefaultRetryPolicy,
+		Backoff:      retryablehttp.DefaultBackoff,
 	}
 
 	err := c.setBaseURL(defaultBaseURL)
@@ -77,16 +80,6 @@ func newClient() (*Client, error) {
 	c.Releases = &ReleasesService{client: c}
 
 	return c, nil
-}
-
-func (c *Client) retryHTTPCheck(ctx context.Context, resp *http.Response, err error) (bool, error) {
-	if ctx.Err() != nil {
-		return false, ctx.Err()
-	}
-	if err != nil {
-		return false, err
-	}
-	return false, nil
 }
 
 func (c *Client) BaseURL() *url.URL {
