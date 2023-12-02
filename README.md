@@ -122,7 +122,7 @@
 
 ```shell
 go env -w GOPROXY=https://goproxy.cn,direct
-# go env -w GOPROXY=https://mirrors.aliyun.com/goproxy/
+# go env -w GOPROXY=https://mirrors.aliyun.com/goproxy,direct
 go get -u github.com/google/go-querystring
 go get -u github.com/hashicorp/go-retryablehttp
 ```

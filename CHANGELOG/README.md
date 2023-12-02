@@ -22,10 +22,18 @@
     - ❤ Contributors | 贡献者
     - ⚠️ Noteworthy Changes | 值得注意的变化
 
+## v2.1.6
+
+- 📔 Documentation | 文档
+    - 修正代理命令
+
 ## v2.1.5
 
 - 🐞 Bug Fixes | 漏洞修补
     - 修正重试功能：使用默认配置
+
+- 📔 Documentation | 文档
+    - 新增使用方式
 
 ## v2.1.4
 
