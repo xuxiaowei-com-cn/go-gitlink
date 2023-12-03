@@ -1,7 +1,8 @@
 package gitlink
 
 import (
-	"encoding/json"
+	"github.com/stretchr/testify/assert"
+	"net/http"
 	"testing"
 )
 
@@ -9,9 +10,7 @@ import (
 func TestGetProjects(t *testing.T) {
 
 	gitClient, err := NewClient("")
-	if err != nil {
-		t.Fatalf("创建客户端异常：%s", err)
-	}
+	assert.NoError(t, err)
 
 	request := &GetProjectsRequest{
 		ListOptions: ListOptions{
@@ -21,21 +20,10 @@ func TestGetProjects(t *testing.T) {
 	}
 
 	projectsData, response, err := gitClient.Projects.GetProjects(request)
-	if err != nil {
-		t.Fatalf("列出授权用户的所有仓库 异常：%s", err)
-	}
-
-	t.Log("response.Status：", response.Status)
-	t.Log("Status：", projectsData.Status)
-	t.Log("Message：", projectsData.Message)
-	t.Log("len：", len(projectsData.Projects))
-	t.Log("TotalCount：", projectsData.TotalCount)
-	t.Log("Projects[0].Name：", projectsData.Projects[0].Name)
-
-	jsonData, err := json.Marshal(projectsData)
-	if err != nil {
-		t.Log("转换失败：", err)
-		return
-	}
-	t.Log("JSON：", string(jsonData))
+	assert.NoError(t, err)
+	assert.Equal(t, http.StatusOK, response.StatusCode)
+	assert.Equal(t, 0, projectsData.Status)
+	assert.Equal(t, "", projectsData.Message)
+	assert.NotEqual(t, int64(0), len(projectsData.Projects))
+	assert.NotEqual(t, int64(0), projectsData.TotalCount)
 }

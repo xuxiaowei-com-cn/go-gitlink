@@ -1,7 +1,8 @@
 package gitlink
 
 import (
-	"encoding/json"
+	"github.com/stretchr/testify/assert"
+	"net/http"
 	"os"
 	"testing"
 )
@@ -13,9 +14,7 @@ func TestDeleteTag(t *testing.T) {
 	var cookie = os.Getenv("GO_GITLINK_COOKIE")
 
 	gitClient, err := NewClient(token)
-	if err != nil {
-		t.Fatalf("创建客户端异常：%s", err)
-	}
+	assert.NoError(t, err)
 
 	gitClient.Cookie = cookie
 
@@ -26,29 +25,17 @@ func TestDeleteTag(t *testing.T) {
 	}
 
 	deleteTag, response, err := gitClient.Tag.DeleteTag(deleteTagRequest)
-	if err != nil {
-		t.Fatalf("删除一个标签 异常：%s", err)
-	}
-
-	t.Log("response.Status：", response.Status)
-	t.Log("Status：", deleteTag.Status)
-	t.Log("Message：", deleteTag.Message)
-
-	jsonData, err := json.Marshal(deleteTag)
-	if err != nil {
-		t.Log("转换失败：", err)
-		return
-	}
-	t.Log("JSON：", string(jsonData))
+	assert.NoError(t, err)
+	assert.Equal(t, http.StatusOK, response.StatusCode)
+	assert.Equal(t, 0, deleteTag.Status)
+	assert.Equal(t, "success", deleteTag.Message)
 }
 
 // 获取仓库标签列表
 func TestGetTags(t *testing.T) {
 
 	gitClient, err := NewClient("")
-	if err != nil {
-		t.Fatalf("创建客户端异常：%s", err)
-	}
+	assert.NoError(t, err)
 
 	var getTagsRequest = &GetTagsRequestPath{
 		Owner: "xuxiaowei-com-cn",
@@ -64,20 +51,10 @@ func TestGetTags(t *testing.T) {
 	}
 
 	getTagsData, response, err := gitClient.Tag.GetTags(getTagsRequest, getTagsRequestQuery)
-	if err != nil {
-		t.Fatalf("获取仓库标签列表 异常：%s", err)
-	}
-
-	t.Log("response.Status：", response.Status)
-	t.Log("Status：", getTagsData.Status)
-	t.Log("Message：", getTagsData.Message)
-	t.Log("len：", len(getTagsData.Tags))
-	t.Log("TotalCount：", getTagsData.TotalCount)
-
-	jsonData, err := json.Marshal(getTagsData)
-	if err != nil {
-		t.Log("转换失败：", err)
-		return
-	}
-	t.Log("JSON：", string(jsonData))
+	assert.NoError(t, err)
+	assert.Equal(t, http.StatusOK, response.StatusCode)
+	assert.Equal(t, 0, getTagsData.Status)
+	assert.Equal(t, "", getTagsData.Message)
+	assert.NotEqual(t, int64(0), len(getTagsData.Tags))
+	assert.NotEqual(t, int64(0), getTagsData.TotalCount)
 }

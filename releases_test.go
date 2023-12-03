@@ -1,7 +1,8 @@
 package gitlink
 
 import (
-	"encoding/json"
+	"github.com/stretchr/testify/assert"
+	"net/http"
 	"os"
 	"testing"
 )
@@ -12,9 +13,7 @@ func TestPostReleases(t *testing.T) {
 	var cookie = os.Getenv("GO_GITLINK_COOKIE")
 
 	gitClient, err := NewClient(token)
-	if err != nil {
-		t.Fatalf("创建客户端异常：%s", err)
-	}
+	assert.NoError(t, err)
 
 	gitClient.Cookie = cookie
 
@@ -33,15 +32,8 @@ func TestPostReleases(t *testing.T) {
 	}
 
 	postReleases, response, err := gitClient.Releases.PostReleases(requestPath, requestBody)
-
-	t.Log("response.Status：", response.Status)
-	t.Log("Status：", postReleases.Status)
-	t.Log("Message：", postReleases.Message)
-
-	jsonData, err := json.Marshal(postReleases)
-	if err != nil {
-		t.Log("转换失败：", err)
-		return
-	}
-	t.Log("JSON：", string(jsonData))
+	assert.NoError(t, err)
+	assert.Equal(t, http.StatusOK, response.StatusCode)
+	assert.Equal(t, 0, postReleases.Status)
+	assert.Equal(t, "发布成功", postReleases.Message)
 }
