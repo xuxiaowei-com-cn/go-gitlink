@@ -21,7 +21,11 @@ func TestPostAttachments(t *testing.T) {
 	attachmentsData, response, err := gitClient.Attachments.PostAttachments("LICENSE", "")
 	assert.NoError(t, err)
 	assert.Equal(t, http.StatusOK, response.StatusCode)
-	assert.Equal(t, 0, attachmentsData.Status)
+	//t.Log(attachmentsData)
+	assert.Nil(t, attachmentsData.Status)
 	assert.Equal(t, "", attachmentsData.Message)
-	assert.NotEqual(t, int64(0), attachmentsData.Id)
+	assert.NotEqual(t, "", attachmentsData.Id)
+	assert.NotEqual(t, "", attachmentsData.Filesize)
+	assert.NotEqual(t, "", attachmentsData.Title)
+	assert.NotEqual(t, "", attachmentsData.Url)
 }

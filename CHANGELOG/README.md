@@ -29,6 +29,7 @@
 
 - ⭐ New Features | 新功能
     - 断言测试结果
+    - 修改 [上传文件返回数据格式](https://www.gitlink.org.cn/Gitlink/forgeplus/issues/3966)
 
 ## v2.1.5
 
