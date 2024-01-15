@@ -22,6 +22,11 @@
     - ❤ Contributors | 贡献者
     - ⚠️ Noteworthy Changes | 值得注意的变化
 
+## v2.1.7
+
+- 🐞 Bug Fixes | 漏洞修补
+    - 修改 [创建发行版发送数据类型](https://www.gitlink.org.cn/Gitlink/forgeplus/issues/3966)
+
 ## v2.1.6
 
 - 📔 Documentation | 文档
@@ -29,6 +34,7 @@
 
 - ⭐ New Features | 新功能
     - 断言测试结果
+- 🐞 Bug Fixes | 漏洞修补
     - 修改 [上传文件返回数据格式](https://www.gitlink.org.cn/Gitlink/forgeplus/issues/3966)
 
 ## v2.1.5
